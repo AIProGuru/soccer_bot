@@ -6,6 +6,7 @@ const { userAuthorization } = require('../middlewares/authorization.middleware')
 const { resetPasswordPin } = require('../model/resetPin/ResetPin.model');
 const { emailProcessor } = require('../helpers/email.helper');
 const { insertAppearance } = require('../model/appearance/Appearance.model');
+const { createAssistantForUser } = require('../model/assistant/Assistant.model');
 const router = express.Router();
 
 router.all('/', (req, res, next) => {
@@ -48,7 +49,8 @@ router.post('/', async(req, res) => {
             foreColor: " "
         };
         await insertAppearance(appearanceObj)
-        console.log(result);
+        const assistant = await createAssistantForUser(result._id);
+        console.log(assistant);
         res.json({status: "success", message: "new user created", result });    
     } catch (error) {
         res.json({status: "error", message: error.message })

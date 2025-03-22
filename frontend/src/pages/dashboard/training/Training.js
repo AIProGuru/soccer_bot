@@ -177,7 +177,7 @@ export const Training = () => {
           </div>
           <div className="fromWebsite">
             {method === "website" && (
-              <div>
+              <div className="website">
                 <Form autoComplete="off" onSubmit={handleOnSubmit}>
                   <Form.Group className="urlForm">
                     <Form.Label>URL:</Form.Label>

@@ -83,7 +83,12 @@ li {
 }
 
 .fromWebsite {
-  margin: auto;
+  display: flex;
+  width: 100%;
+  .website {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 .urlForm {
   width: 400px;
