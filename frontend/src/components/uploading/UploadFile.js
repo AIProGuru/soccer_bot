@@ -1,35 +1,49 @@
-import { ChangeEvent, useState } from "react";
-import "./upload.scss"
+import { useState } from "react";
+import "./upload.scss";
 import axios from "axios";
 import { SERVER_URL } from "../../utils/config";
-const FileUploadSingle = () => {
-  const [file, setFile] = useState();
 
-  const handleChange = async (e) => {
-    setFile(e.target.files[0]);
+const FileUploadMultiple = () => {
+  const [files, setFiles] = useState([]);
+
+  // Handle file selection
+  const handleChange = (e) => {
+    setFiles([...e.target.files]); // Store multiple files
   };
 
-  const handleUpload = (e) => {
+  // Handle file upload
+  const handleUpload = async (e) => {
     e.preventDefault();
+    if (files.length === 0) {
+        alert("Please select at least one file.");
+        return;
+    }
+
     let formData = new FormData();
-    formData.append("file", file);
-    const url = `${SERVER_URL}/v1/train/`;
-    axios
-      .post(url, formData, {})
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log("go there");
-      });
-  };
+    files.forEach((file) => formData.append("files", file)); // Append all files
+    formData.append("assistantId", localStorage.getItem("assistantId")); // Append userId
+    formData.append("threadId", localStorage.getItem("threadId")); // Append userId
+    
+
+    const url = `${SERVER_URL}/v1/assistant/upload/`;
+
+    try {
+        const res = await axios.post(url, formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+        });
+        console.log("Upload successful:", res.data);
+    } catch (err) {
+        console.log("Error uploading files", err);
+    }
+};
+
   return (
     <div className="upload_container">
       <form onSubmit={handleUpload}>
         <label className="custom-file-upload">
-          Choose File
+          Choose Files
           <i className="fa fa-upload"></i>
-          <input type="file" onChange={handleChange} />
+          <input type="file" multiple onChange={handleChange} />
         </label>
         <button type="submit">Upload</button>
       </form>
@@ -37,4 +51,4 @@ const FileUploadSingle = () => {
   );
 };
 
-export default FileUploadSingle;
+export default FileUploadMultiple;

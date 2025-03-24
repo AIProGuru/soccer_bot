@@ -6,7 +6,7 @@ const { userAuthorization } = require('../middlewares/authorization.middleware')
 const { resetPasswordPin } = require('../model/resetPin/ResetPin.model');
 const { emailProcessor } = require('../helpers/email.helper');
 const { insertAppearance } = require('../model/appearance/Appearance.model');
-const { createAssistantForUser } = require('../model/assistant/Assistant.model');
+const { createAssistantForUser, getAssistantByUser } = require('../model/assistant/Assistant.model');
 const router = express.Router();
 
 router.all('/', (req, res, next) => {
@@ -61,6 +61,7 @@ router.post('/', async(req, res) => {
 
 router.post('/login', async(req, res) => {
     const { email, password } = req.body;
+    console.log(email);
     if( !email || !password){
         return res.json( {status: "error", message: "invalid form submition"} );
     }
@@ -70,14 +71,14 @@ router.post('/login', async(req, res) => {
     if (!passFromDb){
         return res.json({status: "error", message: "Invalid email or password"})
     }
-
     const result = await comparePassword(password, passFromDb);
     if(!result)
         return res.json({status: "fail", message: "invaild password"});
-
     const accessJWT = await createAccessJWT(user.email, `${user._id}`);
     const refreshJWT = await createRefreshJWT(user.email, `${user._id}`);
-    res.json({status: "success", message: "Login Success", accessJWT, refreshJWT});
+    const assistant = await getAssistantByUser(user._id);
+    console.log(assistant)
+    res.json({status: "success", message: "Login Success", accessJWT, refreshJWT, userId: user._id, assistant});
     
 })
 

@@ -72,6 +72,9 @@ export const Entry = () => {
                     localStorage.setItem("access-token", res.data.accessJWT)
                     localStorage.setItem("refresh-token", res.data.refreshJWT)
                     localStorage.setItem("email", user.email)
+                    localStorage.setItem("userId", res.data.userId)
+                    localStorage.setItem("assistantId", res.data.assistant.assistantId)
+                    localStorage.setItem("threadId", res.data.assistant.threadId)
                     navigate('/dashboard')
                 } else {
                     console.log('message', res.data.message)

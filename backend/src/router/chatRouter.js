@@ -34,19 +34,9 @@ router.all("/", (req, res, next) => {
 //     }
 // });
 
-async function requestOpenAi(messages) {
-    console.log(messages)
-    const response = await openai.chat.completions.create({
-        model: "gpt-4",
-        messages: [{ role: "system", content: "You are a helpful soccer assistant." }, {role: "user", content: messages}],
-    });
-    console.log('OpenAI Chat response:', response);
-    return response.choices[0].message.content;
-}
-
 
 router.post("/message", async (req, res) => {
-  const { message } = req.body;
+  const { message, assistantId, threadId } = req.body;
   console.log(message)
   if (!message) {
     return res
@@ -54,15 +44,42 @@ router.post("/message", async (req, res) => {
       .json({
         status: "error",
         message: "Invalid request. Message is required.",
-      });
+      }); 
   }
   try {
     
     // const userMessage = await saveMessage({ chatId, userId, message, sender: 'user' });
-    const botResponse = await requestOpenAi(message);
-    console.log("herehere", botResponse)
+    const thread = await openai.beta.threads.messages.create(
+      threadId,
+      {
+        role: "user",
+        content: message
+      }
+    );
+    
+    let run = await openai.beta.threads.runs.createAndPoll(
+      threadId,
+      { 
+        assistant_id: assistantId,
+      }
+    );
+
+    if (run.status === 'completed') {
+      const messages = await openai.beta.threads.messages.list(
+        run.thread_id
+      );
+      console.log("###################################", messages.data[0].content[0].text.value)
+      // for (const message of messages.data.reverse()) {
+      //   console.log(`${message.role} > ${message.content[0].text.value}`);
+      // }
+      res.json({ status: "success", message:messages.data[0].content[0].text.value });
+    } else {
+      console.log(run.status);
+    }
+  
+    
     // await saveMessage({ chatId, userId, message: botResponse, sender: 'bot' });
-    res.json({ status: "success", message:botResponse });
+    
   } catch (error) {
     console.log(error.message)
     res.status(500).json({ status: "error", message: error.message });

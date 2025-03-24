@@ -89,6 +89,8 @@ const ChatbotWidget = ({ uuid }) => {
       // Prepare the data to send in the POST request
       const data = {
         message: userMessage,
+        assistantId: localStorage.getItem('assistantId'),
+        threadId: localStorage.getItem('threadId')
       };
 
       // Send a POST request to the chatbot API with the user message
