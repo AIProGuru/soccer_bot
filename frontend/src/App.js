@@ -15,6 +15,7 @@ import ChatbotWidget from "components/chatbot-widget/ChatbotWidget";
 import { Training } from "pages/dashboard/training/Training";
 import { Appearance } from "pages/dashboard/appearance/Appearance";
 import { Installation } from "pages/dashboard/installation/Installation";
+import LandingPage from "pages/landing/Landing.page";
 import { v5 as uuidv5 } from "uuid";
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Entry />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/entry" element={<Entry />} />
           {/* <Route path="/" element={<EmojiPicker />} /> */}
           <Route
             path="/dashboard"
