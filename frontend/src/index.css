@@ -17,3 +17,10 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bs-body-bg: #181818; /* Change this to your desired background color */
+  --bs-body-color: #F0F0F0;
+  --e-global-color-ced6873: #00FFDA;
+  --e-global-color-525434f: #F0F0F0;
+}
