@@ -417,7 +417,7 @@ const LandingPage = () => {
                                   </svg>{" "}
                                 </span>
                                 <span className="elementor-button-text">
-                                  UNLOCK THE SECRET
+                                  UNLOCK YOUR SECRET
                                 </span>
                               </span>
                             </a>
@@ -794,7 +794,7 @@ const LandingPage = () => {
                               </svg>{" "}
                             </span>
                             <span className="elementor-button-text">
-                              UNLOCK THE SECRET
+                              UNLOCK YOUR SECRET
                             </span>
                           </span>
                         </a>
@@ -1191,7 +1191,7 @@ const LandingPage = () => {
                               </svg>{" "}
                             </span>
                             <span className="elementor-button-text">
-                              UNLOCK THE SECRET
+                              UNLOCK YOUR SECRET
                             </span>
                           </span>
                         </a>
@@ -1386,7 +1386,7 @@ const LandingPage = () => {
                               </svg>{" "}
                             </span>
                             <span className="elementor-button-text">
-                              UNLOCK THE SECRET
+                              UNLOCK YOUR SECRET
                             </span>
                           </span>
                         </a>
@@ -1472,7 +1472,7 @@ const LandingPage = () => {
                               </svg>{" "}
                             </span>
                             <span className="elementor-button-text">
-                              UNLOCK THE SECRET
+                              UNLOCK YOUR SECRET
                             </span>
                           </span>
                         </a>
@@ -1957,7 +1957,7 @@ const LandingPage = () => {
                               </svg>{" "}
                             </span>
                             <span className="elementor-button-text">
-                              Unlock the Secret
+                              UNLOCK YOUR SECRET
                             </span>
                           </span>
                         </a>
@@ -2255,7 +2255,7 @@ const LandingPage = () => {
                             </svg>{" "}
                           </span>
                           <span className="elementor-button-text">
-                            UNLOCK THE SECRET
+                            UNLOCK YOUR SECRET
                           </span>
                         </span>
                       </a>
