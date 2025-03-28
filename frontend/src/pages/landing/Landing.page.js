@@ -385,7 +385,6 @@ const LandingPage = () => {
                           <ul className="elementor-icon-list-items">
                             <li
                               className="elementor-icon-list-item"
-                              onClick={getStarted}
                             >
                               <span className="elementor-icon-list-text">
                                 [Get Tactical AI Now - Dominate Your League!]
@@ -404,7 +403,7 @@ const LandingPage = () => {
                           <div className="elementor-button-wrapper">
                             <a
                               className="elementor-button elementor-button-link elementor-size-sm"
-                              href="#"
+                              onClick={getStarted}
                             >
                               <span className="elementor-button-content-wrapper">
                                 <span className="elementor-button-icon">
