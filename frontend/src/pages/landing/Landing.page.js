@@ -417,7 +417,7 @@ const LandingPage = () => {
                                   </svg>{" "}
                                 </span>
                                 <span className="elementor-button-text">
-                                  Urgency &amp; FOMO Play
+                                  UNLOCK THE SECRET
                                 </span>
                               </span>
                             </a>
@@ -764,7 +764,7 @@ const LandingPage = () => {
                       <ul className="elementor-icon-list-items">
                         <li className="elementor-icon-list-item">
                           <span className="elementor-icon-list-text">
-                            [Get AI Insights Now – Win More Matches Instantly]
+                            [Get AI Insights Now - Win More Matches Instantly]
                           </span>
                         </li>
                       </ul>
@@ -780,7 +780,7 @@ const LandingPage = () => {
                       <div className="elementor-button-wrapper">
                         <a
                           className="elementor-button elementor-button-link elementor-size-sm"
-                          href="#"
+                          onClick={getStarted}
                         >
                           <span className="elementor-button-content-wrapper">
                             <span className="elementor-button-icon">
@@ -794,7 +794,7 @@ const LandingPage = () => {
                               </svg>{" "}
                             </span>
                             <span className="elementor-button-text">
-                              Problem Solving Play
+                              UNLOCK THE SECRET
                             </span>
                           </span>
                         </a>
@@ -1177,7 +1177,7 @@ const LandingPage = () => {
                       <div className="elementor-button-wrapper">
                         <a
                           className="elementor-button elementor-button-link elementor-size-sm"
-                          href="#"
+                          onClick={getStarted}
                         >
                           <span className="elementor-button-content-wrapper">
                             <span className="elementor-button-icon">
@@ -1191,7 +1191,7 @@ const LandingPage = () => {
                               </svg>{" "}
                             </span>
                             <span className="elementor-button-text">
-                              Results Play
+                              UNLOCK THE SECRET
                             </span>
                           </span>
                         </a>
@@ -1372,7 +1372,7 @@ const LandingPage = () => {
                       <div className="elementor-button-wrapper">
                         <a
                           className="elementor-button elementor-button-link elementor-size-sm"
-                          href="#"
+                          onClick={getStarted}
                         >
                           <span className="elementor-button-content-wrapper">
                             <span className="elementor-button-icon">
@@ -1386,7 +1386,7 @@ const LandingPage = () => {
                               </svg>{" "}
                             </span>
                             <span className="elementor-button-text">
-                              Simplification Play
+                              UNLOCK THE SECRET
                             </span>
                           </span>
                         </a>
@@ -1458,7 +1458,7 @@ const LandingPage = () => {
                       <div className="elementor-button-wrapper">
                         <a
                           className="elementor-button elementor-button-link elementor-size-sm"
-                          href="#"
+                          onClick={getStarted}
                         >
                           <span className="elementor-button-content-wrapper">
                             <span className="elementor-button-icon">
@@ -1472,7 +1472,7 @@ const LandingPage = () => {
                               </svg>{" "}
                             </span>
                             <span className="elementor-button-text">
-                              ROI Play
+                              UNLOCK THE SECRET
                             </span>
                           </span>
                         </a>
@@ -2241,7 +2241,7 @@ const LandingPage = () => {
                     <div className="elementor-button-wrapper">
                       <a
                         className="elementor-button elementor-button-link elementor-size-sm"
-                        href="#"
+                        onClick={getStarted}
                       >
                         <span className="elementor-button-content-wrapper">
                           <span className="elementor-button-icon">
@@ -2255,7 +2255,7 @@ const LandingPage = () => {
                             </svg>{" "}
                           </span>
                           <span className="elementor-button-text">
-                            Forces Decision
+                            UNLOCK THE SECRET
                           </span>
                         </span>
                       </a>
