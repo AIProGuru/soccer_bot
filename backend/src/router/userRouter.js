@@ -8,6 +8,8 @@ const { emailProcessor } = require('../helpers/email.helper');
 const { insertAppearance } = require('../model/appearance/Appearance.model');
 const { createAssistantForUser, getAssistantByUser } = require('../model/assistant/Assistant.model');
 const router = express.Router();
+const { OAuth2Client } = require('google-auth-library');
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 router.all('/', (req, res, next) => {
     // res.json({message: "message from the userRouter"})
@@ -28,14 +30,15 @@ router.get('/', userAuthorization, async (req, res) => {
 })
 
 // Create new user router
+
 router.post('/', async(req, res) => {
-    const {website, email, password } = req.body;
+    const { email, password } = req.body;
     const hashedPass = await hashPassword(password);
     try {
         const newUserObj = {
-            website,
             email, 
-            password: hashedPass
+            password: hashedPass,
+            provider: "email"
         };
         const result = await insertUser(newUserObj);
         const appearanceObj = {
@@ -57,6 +60,60 @@ router.post('/', async(req, res) => {
     }    
 })
 
+// Create new google user router
+
+router.post('/google', async (req, res) => {
+    const { token } = req.body;
+
+    try {
+        // Verify the Google token
+        const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: process.env.GOOGLE_CLIENT_ID,
+        });
+
+        const payload = ticket.getPayload();
+        const email = payload.email;
+
+        // Check if user exists
+        let user = await findUserByEmail(email);
+
+        if (!user) {
+            // New user, insert into database
+            const newUserObj = {
+                email,
+                password: null,  // No password for Google login
+                provider: "google",
+            };
+
+            const result = await insertUser(newUserObj);
+
+            // Insert appearance record
+            const appearanceObj = {
+                email,
+                botName: " ",
+                bgColor: " ",
+                onlineStatus: " ", 
+                status: " ",
+                labelText: " ",
+                uuid: " ",
+                foreColor: " "
+            };
+            await insertAppearance(appearanceObj);
+
+            // Create assistant for the user
+            const assistant = await createAssistantForUser(result._id);
+            console.log(assistant);
+
+            user = result;
+        }
+
+        res.json({ status: "success", message: "Google sign-in successful", user });
+
+    } catch (error) {
+        res.json({ status: "error", message: error.message });
+    }
+});
 // Create user login router
 
 router.post('/login', async(req, res) => {

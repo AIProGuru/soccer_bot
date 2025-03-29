@@ -8,11 +8,11 @@ const UserSchema = new Schema({
     //     required: true,
     //     maxlength: 50
     // },
-    website: {
-        type: String,
-        required: true,
-        maxlength: 50
-    },
+    // website: {
+    //     type: String,
+    //     required: true,
+    //     maxlength: 50
+    // },
     // phone: {
     //     type: Number,
     //     maxlength: 11
@@ -31,6 +31,10 @@ const UserSchema = new Schema({
         required: true,
         minlength: 8,
         maxlength: 100
+    },
+    provider: {
+        type: String,
+        required: true,
     },
     refreshJWT: {
         token: {
